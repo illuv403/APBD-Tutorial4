@@ -9,9 +9,12 @@ public class EmpDeptSalgradeTests
     {
         var emps = Database.GetEmps();
 
-        List<Emp> result = null; 
+        var result =
+                from emp in emps
+                where emp.Job == "SALESMAN"
+                select emp; 
 
-        Assert.Equal(2, result.Count);
+        Assert.Equal(2, result.Count());
         Assert.All(result, e => Assert.Equal("SALESMAN", e.Job));
     }
 
